@@ -1,0 +1,37 @@
+:root {
+    --max_width: 1450px;
+    --columns: 12;
+    --offset: 20px;
+    --gutter: 20px;
+    --repeating-width: calc(100% / var(--columns));
+    --column-width: calc((100% / var(--columns)) - var(--gutter));
+    --color: hsla(204, 80%, 72%, 0.25);
+    --background-columns: repeating-linear-gradient(
+    --background-width: calc(100% + var(--gutter));
+    to right,
+    var(--color),
+    transparent var(--column-width),
+    var(--color) var(--column-width),
+      transparent var(--repeating-width)
+    );
+  }
+  
+  /* Styling */
+  html {
+    position: relative;
+  }
+  
+  html::before {
+    position: absolute;
+    margin-left: auto;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin-right: auto;
+    width: calc(100% - (2 * var(--offset)));
+    content: '';
+    max-width: var(--max_width);
+    min-height: 100vh;
+    background-image: var(--background-columns);
+    pointer-events: none;
+    background-size: var(--background-width) 100%;
+    z-index: 1000;
+  }
